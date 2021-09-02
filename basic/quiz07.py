@@ -23,13 +23,15 @@ def juso_input(juso_list):
     return juso_list
 
 def juso_print(juso_list):
-    for data in juso_list:
-        print('이름 : {}, 전화번호 : {}, 주소 : {}\n'.format(juso_list[0][0],juso_list[0][1],juso_list[0][2]))
-    
+    # for data in juso_list:
+    #     print('이름 : {}, 전화번호 : {}, 주소 : {}\n'.format(juso_list[data][0],juso_list[data][1],juso_list[data][2]))
+    print(juso_list)
+
 juso_list = []
 juso_list = juso_load()
+print(juso_list)
 while True:
-    menu_txt = '''1.입력   2.출력   3.저장'''
+    menu_txt = '''1.입력   2.출력   3.저장 \n'''
     menu = input(menu_txt)
     if menu == '1':
         juso_list = juso_input(juso_list)

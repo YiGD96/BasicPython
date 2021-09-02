@@ -41,7 +41,7 @@ from operator import itemgetter
 rank=[['aaa',4,12],['bbb',5,20]]
 calculation = ['+','-','*','/']
 
-print(sorted(rank, key=lambda x:x[1], reverse=True))
+print(sorted(rank, key=lambda x:x[1], reverse=True))    # x:x[1] {'a','b'} -> b기준으로 정렬 
 print(sorted(rank, key=itemgetter(1), reverse=True))
 
 def multisort(xs,specs):

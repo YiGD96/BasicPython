@@ -8,17 +8,71 @@
 # 계좌정보를 출력하는 함수는 은행이름, 예금주, 계좌번호, 잔고를 출력합니다.
 # 입금내역과 출금내역을 출력하는 함수
 
+class Account:
+    # class 변수 계좌 개설 건수 
+    account_count = 0
+
+    @classmethod
+    def get_account_num(cls):
+        print('계좌수:',cls.account_count) 
+    
+    # @staticmethod
+    # def get_account_num1():
+    #     print('계좌수:',Account.account_count)
+
+    def __init__(self, name, balance):
+        Account.account_count += 1
+        self.deposit_count = 0 # 입금횟수
+        self.total_log =[]  
+        self.name = name
+        self.balance = balance
+        self.bank = "부산은행"
+        self.account_number=str(Account.account_count)
+
+    def __str__(self):
+        return "예금주: "+ self.name +" 계좌번호: "+self.account_number+" 잔고: "+str(self.balance)
+    
+    def display_info(self):
+        print("예금주: ", self.name)
+        print("계좌번호: ", self.account_number)
+        print("잔고: ", self.balance)
+    
+    def deposit(self, amount):
+        if amount >= 1:
+            self.total_log.append(('입금',amount))
+            self.balance += amount
+            self.deposit_count += 1
+            if self.deposit_count % 5 == 0:    # 이자지급 5번마다    
+                interest = int(self.balance * 0.01)
+                self.balance = self.balance + interest
+                self.total_log.append(('이자지급',interest))
+                print(interest,'원의 이자가 지급되었습니다.')
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.total_log.append(('출금',amount))
+            self.balance -= amount
+        else:
+            print('잔액이 부족합니다.')
+
+a = Account('hong',2000)
+print(a)
+a.deposit(2000)
+a.deposit(100)
+a.deposit(900)
+a.withdraw(3000)
+a.deposit(7000)
+a.deposit(490)
+print(a.total_log)
 
 # 1. 계좌개설  2. 입금  3. 출금  4. 입출금내역  5. 총계좌수출력  6. 종료
-import quiz10 as qz
-
 
 account_list = []
 while True:
     menu = input('1. 계좌개설  2. 입금  3. 출금  4. 입출금내역  5. 총계좌수출력  6. 종료 \n' )
     if menu == '1':
         name = input('이름 >>> ')
-        a = qz.Account(name, 0)
+        a = Account(name, 0)
         account_list.append(a)
         print(a, '로 계좌가 개설되었습니다.')
     elif menu == '2':
@@ -54,7 +108,7 @@ while True:
             if check ==0:
                 print('계좌번호가 없습니다.')
     elif menu == '5':
-        qz.Account.get_account_num()
+        Account.get_account_num()
     elif menu == '6':
         print('프로그램 종료!')
         break
