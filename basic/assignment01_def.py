@@ -36,3 +36,5 @@ while True:
     Q - 프로그램 종료
     ''').upper()  
     page,custlist = exe(choice,page,custlist)
+
+    #마지막 테스트
