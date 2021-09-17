@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+파일업로드
+{% endblock %}
+
+{% block body %}
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <!--부트스트랩 파일-->
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" name='file' type="file" id="formFile">
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
